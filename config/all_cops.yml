@@ -1,0 +1,11 @@
+AllCops:
+  TargetRailsVersion: 5.1.71
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - app/views/**/*
+    - script/**/*
+    - vendor/**/*
+    - "**/node_modules/**/*"
+    - node-server/**/*
+    - tmp/**/*

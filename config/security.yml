@@ -1,0 +1,5 @@
+# This breaks for us with Psych
+# Error: Tried to load unspecified class: Symbol
+Security/YAMLLoad:
+  Enabled: false
+

@@ -1,0 +1,32 @@
+# Complexity Score Rating: from 15 to 50
+Metrics/AbcSize:
+  Max: 50
+
+# 'Block has too many lines'
+Metrics/BlockLength:
+  Exclude:
+    - "**/*.gemspec"
+    - "**/Gemfile"
+    - spec
+    - test
+    - app/controllers
+
+# 'Class definition is too long'
+Metrics/ClassLength:
+  Enabled: false
+
+# 'Method has too many lines' from 10 to 50
+Metrics/MethodLength:
+  Max: 50
+
+# 'Module has too many lines' from 100 to 500
+Metrics/ModuleLength:
+  Max: 250
+
+# Number of linearly independent paths through a method, 6 to 20
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+# From 7 to 20
+Metrics/PerceivedComplexity:
+  Max: 20

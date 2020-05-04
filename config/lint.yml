@@ -1,0 +1,24 @@
+#    when ...
+#      # noop
+#    when ...
+# is ok to do
+Lint/EmptyWhen:
+  Enabled: false
+
+# Cop disables would require an re-enable - usually those are not needed b/c of scope or file end.
+# Enforcing them creates a lot of noise in the codebase
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+
+# We should always inherit from StandardError, not from Exception.
+#   In those cases we can disable this rule locally
+Lint/InheritException:
+  EnforcedStyle: standard_error
+
+# This breaks for us with Psych
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true

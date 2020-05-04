@@ -1,0 +1,28 @@
+# @andreasklinger: is_foobar is fine in graphql types - `?` does not work
+#   Normally we'd use `Exclude:\n\t- app/graphql/` but unfortunately for some reason
+#   the `Exclude` is ignored. Hence disabled for now.
+Naming/PredicateName:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - lib/angellist-style.rb
+
+# some_var_1 is an ok name
+Naming/VariableNumber:
+  Enabled: false
+
+# Fundraising uses `fc` as very common variable name
+Naming/MethodParameterName:
+  AllowedNames:
+    - io
+    - id
+    - to
+    - by
+    - 'on'
+    - in
+    - at
+    - ip
+    - db # --- until here defaults
+    - fc # needed by Fundraising
+    - jp # common name for job pairing

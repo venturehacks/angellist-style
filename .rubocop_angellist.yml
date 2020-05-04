@@ -1,0 +1,12 @@
+inherit_from:
+  - .rubocop_relaxed.yml
+  - config/require.yml
+  - config/all_cops.yml
+  - config/layout.yml
+  - config/lint.yml
+  - config/metrics.yml
+  - config/naming.yml
+  - config/rails.yml
+  - config/rspec.yml
+  - config/security.yml
+  - config/style.yml

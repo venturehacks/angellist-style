@@ -1,0 +1,65 @@
+:toc:
+
+= `angellist-style`
+
+This gem encapsulates linter rules for https://docs.rubocop.org/en/stable/[rubocop] that can be applied to any Ruby application or service within AngelList stack. It comes with a multiple config files which deactivate some of RuboCop's features. It is meant as a less restrictive foundation that you can use directly or base your style discussions on.
+
+IMPORTANT: The gems' ruleset also loads the https://relaxed.ruby.style/[relaxed ruby style] guide version 2.5, saved into a local file `.rubocop_relaxed.yml`.
+
+This gem should contain no sensitive information and it should be possible to open source it in the future.
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+[source,ruby]
+----
+gem 'angellist-style'
+----
+
+And then execute:
+
+ $ bundle install
+
+== Usage
+
+To use the styles contained in this gem, add this to your `.rubocop.yml`:
+
+[source,yaml]
+----
+inherit_gem:
+  angellist-style:
+    - .rubocop.yml
+----
+
+Or you can choose to load only a particular Rubocop category, which are grouped in YAML files under the `config/` folder.
+
+If you inspect the file `.rubocop_angellist.yml`, you'll see the full list of rule files that is being included. Here we show a version you'd specify in your project's `.rubocop.yml`. If you prefer not to apply some of the categories, just delete the corresponding line:
+
+[source,yaml]
+----
+inherit_gem:
+  angellist-style:
+    - .rubocop_relaxed.yml
+    - config/require.yml
+    - config/all_cops.yml
+    - config/layout.yml
+    - config/lint.yml
+    - config/metrics.yml
+    - config/naming.yml
+    - config/rails.yml
+    - config/rspec.yml
+    - config/security.yml
+    - config/style.yml
+----
+
+
+== Development
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to https://rubygems.org[rubygems.org].
+
+== Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/venturehacks/angellist-style.

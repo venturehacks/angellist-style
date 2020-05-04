@@ -1,0 +1,42 @@
+Rails:
+  Enabled: true
+
+Rails/DynamicFindBy:
+  Whitelist:
+    - find_by_sql
+    - find_by_sql_with_read_from_replica
+    - find_by_sql_without_read_from_replica
+    - find_by_hash # See if we can get rid of these ones
+    - find_by_city
+    - find_by_slug
+    - find_by_username
+    - find_by_username!
+    - find_by_usernames
+    - find_by_usernames!
+    - find by_any_company_name
+    - find_by_domain
+    - find_by_token
+    - find_by_company_name
+    - find_by_name
+    - find_by_name_prefix_search
+    - find_by_any_email
+    - find_by_id
+    - find_by_encoded_id
+    - find_by_url
+    - find_by_startup_id
+    - find_by_lead_id
+    - find_by_target_company_id
+    - find_by_email_or_user
+    - find_by_any_company_name
+
+# @andreasklinger: html_safe is fine - we just have to be careful when using it.
+Rails/OutputSafety:
+  Enabled: false
+
+# Currently we have no timezone set in the application.
+# We need to fix this before we can enforce this rule
+Rails/TimeZone:
+  Enabled: false
+
+Rails/ActiveRecordOverride:
+  Enabled: false

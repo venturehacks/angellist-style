@@ -1,0 +1,40 @@
+# It's ok to use eg. "it { is_expected.to eq 0 }"
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/ImplicitExpect:
+  Enabled: false
+
+RSpec/LeadingSubject:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+# Turning off for rspec-rubocop complains
+RSpec/MultipleExpectations:
+  Max: 20
+
+RSpec/ExampleLength:
+  Max: 40
+
+# Does not make sense for feature tests b/c you test an "user facing feature" not a class
+RSpec/DescribeClass:
+  Exclude:
+    - spec/*
+
+# Dont' use let! — it eager loads the definition even if its not used.
+# Instead just trigger the let-defined variable by referencing it.
+RSpec/LetSetup:
+  Enabled: true
+
+# @andreasklinger: Having just `expect(subject)` is fine
+RSpec/NamedSubject:
+  Enabled: false
+
+# @andreasklinger: Context 'something' is fine
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
