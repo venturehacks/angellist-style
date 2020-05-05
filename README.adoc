@@ -3,12 +3,70 @@
 = `angellist-style`
 
 image:https://github.com/venturehacks/angellist-style/workflows/Run%20RSpecs/badge.svg[link="https://github.com/venturehacks/angellist-style/actions?query=workflow%3A%22Run+RSpecs%22"]
+image:https://badge.fury.io/rb/angellist-style.svg["Gem Version", link="https://badge.fury.io/rb/angellist-style"]
 
 This gem encapsulates linter rules for https://docs.rubocop.org/en/stable/[rubocop] that can be applied to any Ruby application or service within AngelList stack. It comes with a multiple config files which deactivate some of RuboCop's features. It is meant as a less restrictive foundation that you can use directly or base your style discussions on.
 
 IMPORTANT: The gems' ruleset also loads the https://relaxed.ruby.style/[relaxed ruby style] guide version 2.5, saved into a local file `.rubocop_relaxed.yml`.
 
-This gem should contain no sensitive information and it should be possible to open source it in the future.
+== Public Service Announcement
+
+=== The Merits of Linting
+
+image:https://thumbs.gfycat.com/CheerfulAbandonedAmethystsunbird-size_restricted.gif[width=335, title="Developers, Developers, Developers!", border="1"]
+
+The debate is over: automatic formatters and linters have won, period. You can argue with a bus or a mountain, but you won't win that argument. Same here.
+
+Please use rubocop to auto-correct your PRs.
+
+ * It's good for you,
+ * It's good for other developers who will be reading your code,
+ * It's good for the business, and
+ * It's good for the tests.
+
+=== Challenging the Status Quo
+
+There are many scenarios where you may disagree with a given rule, either in general, or in a specific context.
+
+Here are your choices:
+
+. For in-place overrides that only happen once or twice, use in-line comments to disable and immediately re-enable the rule:
++
+[source,ruby]
+----
+# lib/path/to-my-file.rb
+# rubocop: disable Metrics/MethodLength
+def very_long_method
+  # very long body [snip]
+end
+# rubocop: enable Metrics/MethodLength
+----
++
+. For per-file or folder rule overrides, add them to your local `.rubocop.yml`:
++
+[source,yaml]
+----
+# .rubocop.yml
+Metrics/MethodLength:
+  Exclude:
+    - lib/path/to-my-file.rb
+----
++
+. Add an entire rule overide into your local `.rubocop.yml` file:
++
+[source,yaml]
+----
+# .rubocop.yml
+Metrics/MethodLength:
+  Exclude:
+    - lib/path/to-my-file.rb
+----
++
+. Finally, if you want to propose a global change with one or more rules, dependencies, or exclusions, add your change to the appropriate file under `config/`, submit a pull request, and then announce your proposal and the PR in the appropriate Slack channel (you might want to create a poll). Once you are done receiving the feedback — move forward appropriately.
+
+== Scope
+
+This gem is released as a public ruby gem (available at https://rubygems.org/gems/angellist-style[rubygems]) for ease of deployment.
 
 == Installation
 
@@ -23,6 +81,10 @@ And then execute:
 
  $ bundle install
 
+Alternatively, run:
+
+ $ gem install angellist-style -N
+
 == Usage
 
 To use the styles contained in this gem, add this to your `.rubocop.yml`:
@@ -32,35 +94,60 @@ To use the styles contained in this gem, add this to your `.rubocop.yml`:
 inherit_gem:
   angellist-style:
     - .rubocop.yml
+
+# Local overrides.
+Namespace/Rule1:
+  Enabled: false
+
+Namespace/Rule2:
+  Enabled: false
+
+# ... etc ....
 ----
 
-Or you can choose to load only a particular Rubocop category, which are grouped in YAML files under the `config/` folder.
+=== Applying Partial Rulesets
 
-If you inspect the file `.rubocop_angellist.yml`, you'll see the full list of rule files that is being included. Here we show a version you'd specify in your project's `.rubocop.yml`. If you prefer not to apply some of the categories, just delete the corresponding line:
+While not recommended, you can load the rule overrides only for certain Rubocop top-level categories, which are all grouped in YAML files under the `config/` folder.
+
+If you inspect the file `.rubocop_angellist.yml`, you'll see the full list of rule files that is being included.
+
+Here we show a version you'd specify in your project's `.rubocop.yml`.  If you prefer not to apply some of the categories, just delete the corresponding line that you do not want to include:
 
 [source,yaml]
 ----
 inherit_gem:
-  angellist-style:
-    - .rubocop_relaxed.yml
-    - config/require.yml
-    - config/all_cops.yml
-    - config/layout.yml
-    - config/lint.yml
-    - config/metrics.yml
-    - config/naming.yml
-    - config/rails.yml
-    - config/rspec.yml
-    - config/security.yml
-    - config/style.yml
+angellist-style:
+- .rubocop_relaxed.yml
+- config/require.yml
+- config/all_cops.yml
+- config/layout.yml
+- config/lint.yml
+- config/metrics.yml
+- config/naming.yml
+- config/rails.yml
+- config/rspec.yml
+- config/security.yml
+- config/style.yml
 ----
 
+=== Generating a TODO File
 
-== Development
+Rubocop can generate a local "TODO" file, which you can check-in — *this alllows you to run rubocop on CI and have it pass all the legacy code, but fail any new code that does not satisfy the linter.*
+
+[source, bash]
+$ bundle exec rubocop --auto-gen-config
+
+=== Building the Gem
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to https://rubygems.org[rubygems.org].
+Gem management is provided by Rake tasks:
+
+* To install this gem onto your local machine, run `bundle exec rake install`.
+
+* If you have not yet authenticated with rubygems.org, make sure to create an account, and protect it with the MFA. Then
+
+* To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to https://rubygems.org[rubygems.org].
 
 == Contributing
 
