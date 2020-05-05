@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    angellist-style (1.0.1)
+    angellist-style (1.0.2)
       activesupport (= 5.1.7)
-      rubocop (~> 0.82)
+      rubocop
       rubocop-rails
       rubocop-rspec
       rubocop-thread_safety
