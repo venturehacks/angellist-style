@@ -2,6 +2,8 @@
 
 = `angellist-style`
 
+image:https://github.com/venturehacks/angellist-style/workflows/Run%20RSpecs/badge.svg[link="https://github.com/venturehacks/angellist-style/actions?query=workflow%3A%22Run+RSpecs%22"]
+
 This gem encapsulates linter rules for https://docs.rubocop.org/en/stable/[rubocop] that can be applied to any Ruby application or service within AngelList stack. It comes with a multiple config files which deactivate some of RuboCop's features. It is meant as a less restrictive foundation that you can use directly or base your style discussions on.
 
 IMPORTANT: The gems' ruleset also loads the https://relaxed.ruby.style/[relaxed ruby style] guide version 2.5, saved into a local file `.rubocop_relaxed.yml`.
